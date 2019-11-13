@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <title><%= title %></title>
+  <meta charset="UTF-8">
+  <link rel='stylesheet' href='/bootstrap/css/bootstrap.min.css'/>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js'"></script>
+  <script type="text/javascript" src="/javascripts/jquery-1.12.0.js"></script>
+  <script type="text/javascript" src="/javascripts/validacao.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+</head>
+
+<body>
+  <div class="cabeçalho">
+      <h1>Cadastro de Alunos</h1>
+  </div>
+  
+
+  <fieldset id="formCadastro">
+    <form action="/cadastrar-aluno" method="POST" onsubmit="return validacao()">
+      <div>
+        <label for="nome">NOME: </label>
+        <input type="text" name="nome" placeholder="Insira Nome do Aluno" id="nome" class="form-control" />
+      </div>
+      <div>
+        <label for="matricula">MATRICULA: </label>
+        <input type="text" name="matricula" placeholder="Insira Matricula do Aluno" id="matricula" class="form-control" />
+      </div>
+      <hr>
+      <div id="btn_cadastrar">
+        <input type="submit" value="Cadastrar" class="btn btn-success" />
+      </div>
+    </form>
+  </fieldset>
+
+  <fieldset>
+    <legend class="cabeçalho">Alunos Cadastrados</legend>
+
+    <div class="tabela-responsiva">
+    <table border="1" id="registros" class="table table-striped table-bordered table-hover">
+      <thead>
+      <tr>
+        <td>NOME</td>
+        <td>MATRICULA</td>
+        <td><img src="/images/excluir.png"></td>
+      </tr>
+    </thead>
+      <% for(i=0; i<alunos.length; i++){ %>
+          <tr>
+            <td><%= alunos[i].nome %></td>
+            <td><%= alunos[i].matricula %></td>
+            <td><a href="#" onclick="excluirDados('<%= alunos[i].matricula %>')" class="btn btn-danger btn-block">Excluir</a></td>
+          </tr>
+      <% } %>
+    </table>
+  </div>
+
+  </fieldset>
+</body>
+
+</html>
